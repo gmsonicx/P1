@@ -15,7 +15,8 @@ import java.util.function.Function;
  */
 public class InstructionReader {
 
-    private static Map< String, Function< Scanner, Machine.Instruction> > gen
+    @SuppressWarnings("serial")
+	private static Map< String, Function< Scanner, Machine.Instruction> > gen
             = new HashMap< String, Function< Scanner, Machine.Instruction > >()
     {{
         put( "PUSH", in -> { int i = in.nextInt();

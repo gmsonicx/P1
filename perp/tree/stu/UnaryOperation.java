@@ -1,5 +1,7 @@
 package perp.tree.stu;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import perp.SymbolTable;
@@ -12,7 +14,7 @@ implements ExpressionNode {
 
 	public static final String NEG = "_";
 	public static final String SQRT = "#";
-	public static final List<String> OPERATORS = null; 
+	public static final List<String> OPERATORS = new ArrayList<>(Arrays.asList(NEG, SQRT)); 
 	String operator;
 	ExpressionNode expr;
 	public UnaryOperation(String operator, ExpressionNode expr) {
@@ -24,7 +26,12 @@ implements ExpressionNode {
 	@Override
 	public void infixDisplay() {
 		// TODO Auto-generated method stub
-		System.out.println(operator + expr);
+		if (OPERATORS.contains(operator)){
+			System.out.println(operator + expr);
+		}
+		else{
+			System.out.println("Invalid Operator.");
+		}
 		
 	}
 

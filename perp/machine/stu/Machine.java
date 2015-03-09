@@ -143,7 +143,92 @@ public class Machine {
         }
     }
 
-    //
-    // ENTER YOUR CODE FOR THE OTHER INSTRUCTION CLASSES HERE.
-    //
+    public static class Multiply implements Instruction {
+        /**
+         * Run the microsteps for the ADD instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push( op1 * op2 );
+        }
+    }
+    public static class Subtract implements Instruction {
+        /**
+         * Run the microsteps for the ADD instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push( op1 - op2 );
+        } 
+    }
+    public static class Divide implements Instruction {
+        /**
+         * Run the microsteps for the ADD instruction.
+         */
+        @Override
+        public void execute() {
+            int op2 = stack.pop();
+            int op1 = stack.pop();
+            stack.push( op1 / op2 );
+        }
+    }
+        public static class Negate implements Instruction {
+            /**
+             * Run the microsteps for the ADD instruction.
+             */
+            @Override
+            public void execute() {
+                int op1 = stack.pop();
+                stack.push( -op1 );
+            }
+        }
+        public static class SquareRoot implements Instruction {
+            /**
+             * Run the microsteps for the ADD instruction.
+             */
+            @Override
+            public void execute() {
+                int op1 = stack.pop();
+                stack.push( (int) Math.sqrt(op1) );
+            }
+        }
+        public static class Print implements Instruction {
+            /**
+             * Run the microsteps for the ADD instruction.
+             */
+            @Override
+            public void execute() {
+                int op1 = stack.pop();
+                System.out.println(op1);
+            }
+        }
+        public static class PushConst implements Instruction {
+            /**
+             * Run the microsteps for the ADD instruction.
+             */
+            public int i = 0;
+            public PushConst(int i){
+            	this.i = i;
+            }
+            public void execute() {
+                stack.push( i );
+            }
+        }
+        public static class Load implements Instruction {
+            /**
+             * Run the microsteps for the ADD instruction.
+             */
+            String a;
+            public Load(String a){
+            	this.a = a;
+            }
+            
+            public void execute() {
+                stack.push( table.get(a) );
+            }
+        }
 }
