@@ -16,6 +16,8 @@ import java.util.List;
  * @author YOUR NAME HERE
  */
 public class ParseTree {
+	
+	List<String> program;
 
     /**
      * Parse the entire list of program tokens. The program is a
@@ -25,6 +27,10 @@ public class ParseTree {
      * @param program the token list (Strings)
      */
     public ParseTree( List< String > program ) {
+        this.program = program;
+    	for (int e = 0; e<program.size(); e++){
+        	
+        }
     }
 
     /**
@@ -33,8 +39,9 @@ public class ParseTree {
      * @param program the list of tokens
      * @return a parse tree for the action
      */
+
     private ActionNode parseAction( List< String > program ) {
-        return null;
+        ActionNode program.get(0);
     }
 
     /**
