@@ -96,13 +96,14 @@ public class PerpTest {
 
         tree.displayProgram();
 
-        /*tree.interpret();
+        tree.interpret();
 
         List< Machine.Instruction > program = tree.compile();
-
+        
+        
         Machine.displayInstructions( program );
 
         Machine.execute( program );
-        */
+       
     }
 }

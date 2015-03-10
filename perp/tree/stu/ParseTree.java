@@ -6,6 +6,7 @@ import perp.machine.stu.Machine;
 import perp.tree.ActionNode;
 import perp.tree.ExpressionNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,8 @@ import java.util.List;
  */
 public class ParseTree {
 	
-	List<String> program;
+	private ActionSequence tree; 
+	public SymbolTable symTab = new SymbolTable();
 
     /**
      * Parse the entire list of program tokens. The program is a
@@ -27,10 +29,11 @@ public class ParseTree {
      * @param program the token list (Strings)
      */
     public ParseTree( List< String > program ) {
-        this.program = program;
-    	for (int e = 0; e<program.size(); e++){
-        	
-        }
+    	tree = new ActionSequence();
+    	while (!program.isEmpty()){
+    		tree.addAction(parseAction(program));
+    		
+    	}
     }
 
     /**
@@ -40,8 +43,17 @@ public class ParseTree {
      * @return a parse tree for the action
      */
 
-    private ActionNode parseAction( List< String > program ) {
-        ActionNode program.get(0);
+    @SuppressWarnings("unused")
+	private ActionNode parseAction( List< String > program ) {
+    	String a = program.remove(0);
+    	ActionNode e = null;
+      	if (a.equals(":=")){
+       		e = new Assignment(program.remove(0), parseExpr(program)); 
+       	}
+        else if (a.equals("@")){
+       		e = new Print(parseExpr(program));
+        	}
+		return e;
     }
 
     /**
@@ -51,8 +63,24 @@ public class ParseTree {
      * @return a parse tree for this expression
      */
     private ExpressionNode parseExpr( List< String > program ) {
-        return null;
-    }
+    	ExpressionNode w = null;
+    	String b = program.remove(0);
+    	
+    	if (b.equals("+") || b.equals("//") || b.equals("*") || b.equals("-")){
+    		w = new BinaryOperation(b, parseExpr(program), parseExpr(program));
+        }
+        else if(b.equals("#") || b.equals("_")){
+        	w = new UnaryOperation(b, parseExpr(program));
+        		}
+        else if(b.matches( "^[a-zA-Z].*" )){
+        	w = new Variable(b);
+        }
+        else {
+        	w= new Constant(Integer.parseInt(b));
+        }
+    	return w;     		
+        }
+		
 
     /**
      * Print the program the tree represents in a more typical
@@ -60,6 +88,9 @@ public class ParseTree {
      * @see perp.tree.ActionNode#infixDisplay()
      */
     public void displayProgram() {
+    	System.out.println("The program, with expressions in infix notation: ");
+    	tree.infixDisplay();
+    	
     }
 
     /**
@@ -67,6 +98,9 @@ public class ParseTree {
      * @see perp.tree.ActionNode#execute(perp.SymbolTable)
      */
     public void interpret() {
+    	System.out.println("\nInterpreting the parse tree ");
+    	tree.execute(symTab);
+    	System.out.println("Interpretation Complete. ");
     }
 
     /**
@@ -76,7 +110,9 @@ public class ParseTree {
      * @see perp.machine.stu.Machine.Instruction#execute()
      */
     public List< Machine.Instruction > compile() {
-        return null;
+        List<Machine.Instruction> t = new ArrayList<Machine.Instruction>();
+        t.addAll(tree.emit());
+        return t;
     }
 
 }

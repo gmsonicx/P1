@@ -123,6 +123,7 @@ public class Machine {
          * Create a STORE instruction
          * @param ident the name of the target variable
          */
+        String ident;
         public Store( String ident ) {
             this.name = ident;
         }
@@ -139,7 +140,7 @@ public class Machine {
          */
         @Override
         public String toString() {
-            return "STORE " + this.name;
+            return "STORE " + this.ident;
         }
     }
 
@@ -153,6 +154,15 @@ public class Machine {
             int op1 = stack.pop();
             stack.push( op1 * op2 );
         }
+
+        /**
+         * Show the ADD instruction as plain text.
+         * @return "ADD"
+         */
+        @Override
+        public String toString() {
+            return "MUL";
+        }
     }
     public static class Subtract implements Instruction {
         /**
@@ -164,6 +174,15 @@ public class Machine {
             int op1 = stack.pop();
             stack.push( op1 - op2 );
         } 
+
+        /**
+         * Show the ADD instruction as plain text.
+         * @return "ADD"
+         */
+        @Override
+        public String toString() {
+            return "SUB";
+        }
     }
     public static class Divide implements Instruction {
         /**
@@ -175,6 +194,15 @@ public class Machine {
             int op1 = stack.pop();
             stack.push( op1 / op2 );
         }
+
+        /**
+         * Show the ADD instruction as plain text.
+         * @return "ADD"
+         */
+        @Override
+        public String toString() {
+            return "DIV";
+        }
     }
         public static class Negate implements Instruction {
             /**
@@ -184,6 +212,15 @@ public class Machine {
             public void execute() {
                 int op1 = stack.pop();
                 stack.push( -op1 );
+            }
+
+            /**
+             * Show the ADD instruction as plain text.
+             * @return "ADD"
+             */
+            @Override
+            public String toString() {
+                return "NEG";
             }
         }
         public static class SquareRoot implements Instruction {
@@ -195,6 +232,15 @@ public class Machine {
                 int op1 = stack.pop();
                 stack.push( (int) Math.sqrt(op1) );
             }
+
+            /**
+             * Show the ADD instruction as plain text.
+             * @return "ADD"
+             */
+            @Override
+            public String toString() {
+                return "SQRT";
+            }
         }
         public static class Print implements Instruction {
             /**
@@ -204,6 +250,15 @@ public class Machine {
             public void execute() {
                 int op1 = stack.pop();
                 System.out.println(op1);
+            }
+
+            /**
+             * Show the ADD instruction as plain text.
+             * @return "ADD"
+             */
+            @Override
+            public String toString() {
+                return "PRINT";
             }
         }
         public static class PushConst implements Instruction {
@@ -217,6 +272,15 @@ public class Machine {
             public void execute() {
                 stack.push( i );
             }
+
+            /**
+             * Show the ADD instruction as plain text.
+             * @return "ADD"
+             */
+            @Override
+            public String toString() {
+                return "PUSH   " + i;
+            }
         }
         public static class Load implements Instruction {
             /**
@@ -225,6 +289,15 @@ public class Machine {
             String a;
             public Load(String a){
             	this.a = a;
+            }
+
+            /**
+             * Show the ADD instruction as plain text.
+             * @return "ADD"
+             */
+            @Override
+            public String toString() {
+                return "LOAD   " + a;
             }
             
             public void execute() {

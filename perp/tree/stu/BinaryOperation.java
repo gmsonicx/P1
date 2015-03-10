@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import perp.SymbolTable;
+import perp.machine.stu.Machine;
 import perp.machine.stu.Machine.Instruction;
 import perp.tree.ExpressionNode;
 
@@ -29,10 +30,20 @@ implements ExpressionNode {
 	}
 
 	@Override
+	/*public String toString(){
+	leftChild.infixDisplay();
+	System.out.print(" " + this.operator + " ");
+	rightChild.infixDisplay();
+	}*/
+	
 	public void infixDisplay() {
 		// TODO Auto-generated method stub
 		if (OPERATORS.contains(operator)){
-			System.out.println(leftChild + operator + rightChild);
+			System.out.print(" ( ");
+			leftChild.infixDisplay();
+			System.out.print(" " + this.operator + " ");
+			rightChild.infixDisplay();
+			System.out.print(" ) ");
 		}
 		else{
 			System.out.println("Invalid Operator.");
@@ -44,13 +55,43 @@ implements ExpressionNode {
 	@Override
 	public List<Instruction> emit() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Instruction> s = new ArrayList<Instruction>();
+		if (operator.equals(ADD)){
+			s.add(new Machine.Add());
+		}
+		if (operator.equals(SUB)){
+			s.add(new Machine.Subtract());
+		}
+		if (operator.equals(DIV)){
+			s.add(new Machine.Divide());
+		}
+		if (operator.equals(MUL)){
+			s.add(new Machine.Multiply());
+		}
+		s.addAll(leftChild.emit());
+		s.addAll(rightChild.emit());
+		return s;
 	}
 
 	@Override
 	public int evaluate(SymbolTable symTab) {
 		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		int a = leftChild.evaluate(symTab);
+		int b = rightChild.evaluate(symTab);
+		if (operator == ADD){
+			result= (a + b);
+		}
+		if (operator == DIV){
+			result = (a / b);
+		}
+		if (operator == MUL){
+			result = (a*b);
+		}
+		if (operator == SUB){
+			result = (a-b);
+		}
+		return result;
 	}
 
 }

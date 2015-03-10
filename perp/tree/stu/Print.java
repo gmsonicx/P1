@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import perp.SymbolTable;
-import perp.machine.stu.Machine;
 import perp.machine.stu.Machine.Instruction;
+import perp.tree.ActionNode;
 import perp.tree.ExpressionNode;
 
-public class Constant extends Object implements ExpressionNode {
-	private int value;
+public class Print extends Object implements ActionNode {
+	ExpressionNode e;
 
-	public Constant(int value) {
+	public Print(ExpressionNode printee) {
 		// TODO Auto-generated constructor stub
-		this.value = value;
+		this.e = printee;
 	}
 
 	@Override
 	public void infixDisplay() {
-		System.out.print(value);
-		
+		// TODO Auto-generated method stub
+		e.infixDisplay();
 	}
 
 	@Override
 	public List<Instruction> emit() {
 		// TODO Auto-generated method stub
-		List<Instruction> a = new ArrayList<Instruction>();
-		a.add(new Machine.PushConst(value));
-		return a;
-		
+		List<Instruction> g = new ArrayList<Instruction>();
+		g.addAll(e.emit());
+		return g;
 	}
 
 	@Override
-	public int evaluate(SymbolTable symTab) {
+	public void execute(SymbolTable symTab) {
 		// TODO Auto-generated method stub
-		return value;
+		System.out.println("=== " + e.evaluate(symTab));
+
 	}
 
 }

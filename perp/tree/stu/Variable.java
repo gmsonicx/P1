@@ -1,8 +1,10 @@
 package perp.tree.stu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import perp.SymbolTable;
+import perp.machine.stu.Machine;
 import perp.machine.stu.Machine.Instruction;
 import perp.tree.ExpressionNode;
 
@@ -19,14 +21,16 @@ implements ExpressionNode {
 	@Override
 	public void infixDisplay() {
 		// TODO Auto-generated method stub
-		System.out.println(name);
+		System.out.print(name);
 		
 	}
 
 	@Override
 	public List<Instruction> emit() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Instruction> a = new ArrayList<Instruction>();
+		a.add(new Machine.Load(name));
+		return a;
 	}
 
 	@Override
