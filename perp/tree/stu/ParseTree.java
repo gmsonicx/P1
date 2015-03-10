@@ -12,10 +12,11 @@ import java.util.List;
 /**
  * Operations that are done on a Perp code parse tree.
  *
- * THIS CLASS IS UNIMPLEMENTED. All methods are stubbed out.
+ * THIS CLASS IS UN-UNIMPLEMENTED. All methods are un-stubbed out.
  *
- * @author YOUR NAME HERE
+ * @author Grantley Morrison
  */
+@SuppressWarnings("unused")
 public class ParseTree {
 	
 	private ActionSequence tree; 
@@ -43,7 +44,6 @@ public class ParseTree {
      * @return a parse tree for the action
      */
 
-    @SuppressWarnings("unused")
 	private ActionNode parseAction( List< String > program ) {
     	String a = program.remove(0);
     	ActionNode e = null;
@@ -100,7 +100,8 @@ public class ParseTree {
     public void interpret() {
     	System.out.println("\nInterpreting the parse tree ");
     	tree.execute(symTab);
-    	System.out.println("Interpretation Complete. ");
+    	System.out.println("Interpretation Complete.\n ");
+    	symTab.dump();
     }
 
     /**

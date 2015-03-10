@@ -117,7 +117,7 @@ public class Machine {
      */
     public static class Store implements Instruction {
         /** stores name of target variable */
-        private String name;
+        public String name;
 
         /**
          * Create a STORE instruction
@@ -125,14 +125,14 @@ public class Machine {
          */
         String ident;
         public Store( String ident ) {
-            this.name = ident;
+            this.ident = ident;
         }
         /**
          * Run the microsteps for the STORE instruction.
          */
         @Override
         public void execute() {
-            table.put( this.name, stack.pop() );
+            table.put( this.ident, stack.pop() );
         }
         /**
          * Show the STORE instruction as plain text.

@@ -56,6 +56,8 @@ implements ExpressionNode {
 	public List<Instruction> emit() {
 		// TODO Auto-generated method stub
 		List<Instruction> s = new ArrayList<Instruction>();
+		s.addAll(leftChild.emit());
+		s.addAll(rightChild.emit());
 		if (operator.equals(ADD)){
 			s.add(new Machine.Add());
 		}
@@ -68,8 +70,6 @@ implements ExpressionNode {
 		if (operator.equals(MUL)){
 			s.add(new Machine.Multiply());
 		}
-		s.addAll(leftChild.emit());
-		s.addAll(rightChild.emit());
 		return s;
 	}
 
