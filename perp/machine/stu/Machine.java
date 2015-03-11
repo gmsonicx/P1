@@ -143,10 +143,12 @@ public class Machine {
             return "STORE " + this.ident;
         }
     }
-
+    /**
+     * The MULTIPLY instruction
+     */
     public static class Multiply implements Instruction {
         /**
-         * Run the microsteps for the ADD instruction.
+         * Run the microsteps for the MULTIPLY instruction.
          */
         @Override
         public void execute() {
@@ -156,17 +158,20 @@ public class Machine {
         }
 
         /**
-         * Show the ADD instruction as plain text.
-         * @return "ADD"
+         * Show the MULTIPLY instruction as plain text.
+         * @return "MUL"
          */
         @Override
         public String toString() {
             return "MUL";
         }
     }
+    /**
+     * The SUBTRACT instruction
+     */
     public static class Subtract implements Instruction {
         /**
-         * Run the microsteps for the ADD instruction.
+         * Run the microsteps for the SUBTRACT instruction.
          */
         @Override
         public void execute() {
@@ -176,17 +181,20 @@ public class Machine {
         } 
 
         /**
-         * Show the ADD instruction as plain text.
-         * @return "ADD"
+         * Show the SUBTRACT instruction as plain text.
+         * @return "SUB"
          */
         @Override
         public String toString() {
             return "SUB";
         }
     }
+    /**
+     * The DIVIDE instruction
+     */
     public static class Divide implements Instruction {
         /**
-         * Run the microsteps for the ADD instruction.
+         * Run the microsteps for the DIVIDE instruction.
          */
         @Override
         public void execute() {
@@ -196,17 +204,20 @@ public class Machine {
         }
 
         /**
-         * Show the ADD instruction as plain text.
-         * @return "ADD"
+         * Show the DIVIDE instruction as plain text.
+         * @return "DIV"
          */
         @Override
         public String toString() {
             return "DIV";
         }
     }
+    /**
+     * The NEGATE instruction
+     */
         public static class Negate implements Instruction {
             /**
-             * Run the microsteps for the ADD instruction.
+             * Run the microsteps for the NEGATE instruction.
              */
             @Override
             public void execute() {
@@ -215,17 +226,20 @@ public class Machine {
             }
 
             /**
-             * Show the ADD instruction as plain text.
-             * @return "ADD"
+             * Show the NEGATE instruction as plain text.
+             * @return "NEG"
              */
             @Override
             public String toString() {
                 return "NEG";
             }
         }
+        /**
+         * The SQUAREROOT instruction
+         */
         public static class SquareRoot implements Instruction {
             /**
-             * Run the microsteps for the ADD instruction.
+             * Run the microsteps for the SQUAREROOT instruction.
              */
             @Override
             public void execute() {
@@ -234,17 +248,21 @@ public class Machine {
             }
 
             /**
-             * Show the ADD instruction as plain text.
-             * @return "ADD"
+             * Show the SQUAREROOT instruction as plain text.
+             * @return "SQRT"
              */
             @Override
             public String toString() {
                 return "SQRT";
             }
         }
+        
+        /**
+         * The PRINT instruction
+         */
         public static class Print implements Instruction {
             /**
-             * Run the microsteps for the ADD instruction.
+             * Run the microsteps for the PRINT instruction.
              */
             @Override
             public void execute() {
@@ -253,17 +271,20 @@ public class Machine {
             }
 
             /**
-             * Show the ADD instruction as plain text.
-             * @return "ADD"
+             * Show the PRINT instruction as plain text.
+             * @return "PRINT"
              */
             @Override
             public String toString() {
                 return "PRINT";
             }
         }
+        /**
+         * The PUSHCONST instruction
+         */
         public static class PushConst implements Instruction {
             /**
-             * Run the microsteps for the ADD instruction.
+             * Run the microsteps for the PUSHCONST instruction.
              */
             public int i = 0;
             public PushConst(int i){
@@ -274,17 +295,20 @@ public class Machine {
             }
 
             /**
-             * Show the ADD instruction as plain text.
-             * @return "ADD"
+             * Show the PUSHCONST instruction as plain text.
+             * @return "PUSH"
              */
             @Override
             public String toString() {
                 return "PUSH   " + i;
             }
         }
+        /**
+         * The LOAD instruction
+         */
         public static class Load implements Instruction {
             /**
-             * Run the microsteps for the ADD instruction.
+             * Run the microsteps for the LOAD instruction.
              */
             String a;
             public Load(String a){
@@ -292,8 +316,8 @@ public class Machine {
             }
 
             /**
-             * Show the ADD instruction as plain text.
-             * @return "ADD"
+             * Show the LOAD instruction as plain text.
+             * @return "LOAD"
              */
             @Override
             public String toString() {

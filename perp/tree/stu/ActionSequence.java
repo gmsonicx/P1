@@ -8,21 +8,24 @@ import perp.machine.stu.Machine;
 import perp.machine.stu.Machine.Instruction;
 import perp.tree.ActionNode;
 
+// An ActionNode used to string actions together into a sequence. An ActionSequence contains an ordered sequence of ActionNodes.
+
 public class ActionSequence
 extends Object
 implements ActionNode {
 	
 	ArrayList<ActionNode> ActionSequence = new ArrayList<ActionNode>();
 	public ActionSequence() {
-		// TODO Auto-generated constructor stub
+		// Initialize this instance as an empty sequence of ActionNode children.
 	}
 	
 	public void addAction(ActionNode newNode){
+		//Add a child of this ActionSequence node.
 		ActionSequence.add(newNode);
 	}
 	@Override
 	public void infixDisplay() {
-		// TODO Auto-generated method stub
+		// Show the infix displays of all children on standard output.
 		for (ActionNode E:  ActionSequence){
 			E.infixDisplay();			
 		}
@@ -30,7 +33,7 @@ implements ActionNode {
 
 	@Override
 	public List<Instruction> emit() {
-		// TODO Auto-generated method stub
+		// Create a list of instructions emitted by each child, from the first-added child to the last-added.
 		List<Machine.Instruction> f = new ArrayList<Machine.Instruction>();
 		for (ActionNode x: ActionSequence){
 			f.addAll(x.emit());
@@ -40,6 +43,7 @@ implements ActionNode {
 
 	@Override
 	public void execute(SymbolTable symTab) {
+		//Execute each ActionNode in this object, from first-added to last-added.
 		for (ActionNode E:  ActionSequence){
 			E.execute(symTab);
 		}

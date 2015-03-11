@@ -11,23 +11,26 @@ import perp.tree.ExpressionNode;
 public class Variable
 extends Object
 implements ExpressionNode {
+	//The ExpressionNode for a simple variable
+	
 	private String name;
+	//Initialize the name
 
 	public Variable(String name) {
-		// TODO Auto-generated constructor stub
+		// TSet the name of this new Variable.
 		this.name = name;
 	}
 
 	@Override
 	public void infixDisplay() {
-		// TODO Auto-generated method stub
+		// Print on standard output the Variable's name.
 		System.out.print(name);
 		
 	}
 
 	@Override
 	public List<Instruction> emit() {
-		// TODO Auto-generated method stub
+		// Emit a LOAD instruction that pushes the Variable's value onto the stack.
 		List<Instruction> a = new ArrayList<Instruction>();
 		a.add(new Machine.Load(name));
 		return a;
@@ -35,7 +38,7 @@ implements ExpressionNode {
 
 	@Override
 	public int evaluate(SymbolTable symTab) {
-		// TODO Auto-generated method stub
+		// Evaluate a variable by fetching its value
 		return symTab.get(name);
 	}
 

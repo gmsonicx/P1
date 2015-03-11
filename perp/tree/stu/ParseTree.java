@@ -18,6 +18,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public class ParseTree {
+	//Operations that are done on a Perp code parse tree.
 	
 	private ActionSequence tree; 
 	public SymbolTable symTab = new SymbolTable();

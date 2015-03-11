@@ -9,22 +9,26 @@ import perp.machine.stu.Machine.Instruction;
 import perp.tree.ExpressionNode;
 
 public class Constant extends Object implements ExpressionNode {
+	//An expression node representing a constant, i.e., literal value
+	
 	private int value;
+	//Initialize value
 
 	public Constant(int value) {
-		// TODO Auto-generated constructor stub
+		// Store the integer value in this new Constant.
 		this.value = value;
 	}
 
 	@Override
 	public void infixDisplay() {
+		//Print this Constant's value on standard output.
 		System.out.print(value);
 		
 	}
 
 	@Override
 	public List<Instruction> emit() {
-		// TODO Auto-generated method stub
+		// Emit an instruction to push the value onto the stack.
 		List<Instruction> a = new ArrayList<Instruction>();
 		a.add(new Machine.PushConst(value));
 		return a;
@@ -33,7 +37,7 @@ public class Constant extends Object implements ExpressionNode {
 
 	@Override
 	public int evaluate(SymbolTable symTab) {
-		// TODO Auto-generated method stub
+		// Evaluate the constant
 		return value;
 	}
 

@@ -13,31 +13,41 @@ import perp.tree.ExpressionNode;
 public class BinaryOperation extends Object
 implements ExpressionNode {
 	
+	//A calculation represented by a binary operator and its two operands.
+	
 	static String ADD = "+";
+	//The operator symbol used for addition
+	
 	static String DIV = "//";
+	//The operator symbol used for division
+	
 	static String MUL = "*";
+	//The operator symbol used for multiplication
+	
 	static String SUB = "-";
+	//The operator symbol used for subtraction
+	
 	static Collection<String> OPERATORS = new ArrayList<>(Arrays.asList(ADD, DIV, MUL, SUB));
+	//Container of all legal binary operators, for use by parsers
+	
 	String operator;
+	//Initializing the operator
+	
 	ExpressionNode leftChild;
+	//Initializing leftChild
+	
 	ExpressionNode rightChild;
+	//Initializing rightChild
 	
 	public BinaryOperation(String operator, ExpressionNode leftChild, ExpressionNode rightChild) {
-		// TODO Auto-generated constructor stub
+		// Create a new BinaryOperation node.
 		this.operator = operator;
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
 	}
-
-	@Override
-	/*public String toString(){
-	leftChild.infixDisplay();
-	System.out.print(" " + this.operator + " ");
-	rightChild.infixDisplay();
-	}*/
 	
 	public void infixDisplay() {
-		// TODO Auto-generated method stub
+		// Print, on standard output, the infixDisplay of the two child nodes separated by the operator and surrounded by parentheses.
 		if (OPERATORS.contains(operator)){
 			System.out.print(" ( ");
 			leftChild.infixDisplay();
@@ -54,7 +64,7 @@ implements ExpressionNode {
 
 	@Override
 	public List<Instruction> emit() {
-		// TODO Auto-generated method stub
+		// Emit the Machine instructions necessary to perform the computation of this BinaryOperation.
 		List<Instruction> s = new ArrayList<Instruction>();
 		s.addAll(leftChild.emit());
 		s.addAll(rightChild.emit());
@@ -75,7 +85,7 @@ implements ExpressionNode {
 
 	@Override
 	public int evaluate(SymbolTable symTab) {
-		// TODO Auto-generated method stub
+		// Compute the result of evaluating both operands and applying the operator to them.
 		int result = 0;
 		int a = leftChild.evaluate(symTab);
 		int b = rightChild.evaluate(symTab);

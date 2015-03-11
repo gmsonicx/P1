@@ -12,21 +12,32 @@ import perp.tree.ExpressionNode;
 public class UnaryOperation
 extends Object
 implements ExpressionNode {
+	//A calculation represented by a unary operator and its operand.
 
 	public static final String NEG = "_";
+	//arithmetic negation operator
+	
 	public static final String SQRT = "#";
+	//square root operator
+	
 	public static final List<String> OPERATORS = new ArrayList<>(Arrays.asList(NEG, SQRT)); 
+	//Container of all legal unary operators, for use by parsers
+	
 	String operator;
+	//Initialize operator
+	
 	ExpressionNode expr;
+	//Initialize expr
+	
 	public UnaryOperation(String operator, ExpressionNode expr) {
-		// TODO Auto-generated constructor stub
+		// Create a new UnaryOperation node.
 		this.operator = operator;
 		this.expr = expr;
 	}
 
 	@Override
 	public void infixDisplay() {
-		// TODO Auto-generated method stub
+		// Print, on standard output, the infixDisplay of the child nodes preceded by the operator and without an intervening blank.
 		if (OPERATORS.contains(operator)){
 			System.out.print(operator);
 			expr.infixDisplay();
@@ -39,7 +50,7 @@ implements ExpressionNode {
 
 	@Override
 	public List<Instruction> emit() {
-		// TODO Auto-generated method stub
+		// Emit the Machine instructions necessary to perform the computation of this UnaryOperation.
 		List<Instruction> a = new ArrayList<Instruction>();
 		if (operator.equals(NEG)){
 			a.addAll(expr.emit());
@@ -54,7 +65,7 @@ implements ExpressionNode {
 
 	@Override
 	public int evaluate(SymbolTable symTab) {
-		// TODO Auto-generated method stub
+		// Compute the result of evaluating the expression and applying the operator to it.
 		int p = 0;
 		if (operator.equals(NEG)){
 			return p = 0 - expr.evaluate(symTab);
